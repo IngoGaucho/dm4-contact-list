@@ -1,5 +1,6 @@
 package de.deepamehta.plugins.contacts.list;
 
+import static de.deepamehta.plugins.contacts.list.ContactURIs.*;
 import de.deepamehta.core.model.TopicModel;
 
 public class Address extends TopicBean {
@@ -8,9 +9,9 @@ public class Address extends TopicBean {
 
     public Address(TopicModel topic) {
         super(topic);
-        this.label = getValue("dm4.contacts.address_label");
+        this.label = getValue(ADDRESS_LABEL);
         // rebase the topic
-        this.topic = topic.getCompositeValue().getTopic("dm4.contacts.address");
+        this.topic = topic.getCompositeValue().getTopic(ADDRESS);
     }
 
     public String getLabel() {
@@ -18,14 +19,14 @@ public class Address extends TopicBean {
     }
 
     public String getStreet() {
-        return getValue("dm4.contacts.street");
+        return getValue(STREET);
     }
 
     public String getCode() {
-        return getValue("dm4.contacts.postal_code");
+        return getValue(POSTAL_CODE);
     }
 
     public String getCity() {
-        return getValue("dm4.contacts.city");
+        return getValue(CITY);
     }
 }

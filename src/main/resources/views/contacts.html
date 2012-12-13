@@ -53,8 +53,10 @@ td { vertical-align: top; }
         <td th:text="${contact.nr}">nr</td>
         <td th:text="${contact.id}">id</td>
         <td th:text="${contact.name}">name</td>
-        <td th:each="mail: ${contact.mails}">
-          <div th:text="${mail}">mail</div>
+        <td>
+          <div th:each="mail: ${contact.mails}">
+            <span th:text="${mail}">mail</span>
+          </div>
         </td>
         <td>
           <div th:each="phone: ${contact.phones}">

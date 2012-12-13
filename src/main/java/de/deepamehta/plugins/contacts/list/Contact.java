@@ -1,5 +1,7 @@
 package de.deepamehta.plugins.contacts.list;
 
+import static de.deepamehta.plugins.contacts.list.ContactURIs.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,9 +31,8 @@ public class Contact extends TopicBean {
 
     public List<Address> getAddresses() {
         List<Address> addresses = new ArrayList<Address>();
-        if (topic.getCompositeValue().has("dm4.contacts.address_entry")) {
-            for (TopicModel address : topic.getCompositeValue().getTopics(
-                    "dm4.contacts.address_entry")) {
+        if (topic.getCompositeValue().has(ADDRESS_ENTRY)) {
+            for (TopicModel address : topic.getCompositeValue().getTopics(ADDRESS_ENTRY)) {
                 addresses.add(new Address(address));
             }
         }
@@ -39,13 +40,13 @@ public class Contact extends TopicBean {
     }
 
     public List<String> getMails() {
-        return getCompositeValueList("dm4.contacts.email_address");
+        return getCompositeValueList(EMAIL);
     }
 
     public List<Phone> getPhones() {
         List<Phone> phones = new ArrayList<Phone>();
-        if (topic.getCompositeValue().has("dm4.contacts.phone_entry")) {
-            for (TopicModel phone : topic.getCompositeValue().getTopics("dm4.contacts.phone_entry")) {
+        if (topic.getCompositeValue().has(PHONE_ENTRY)) {
+            for (TopicModel phone : topic.getCompositeValue().getTopics(PHONE_ENTRY)) {
                 phones.add(new Phone(phone));
             }
         }

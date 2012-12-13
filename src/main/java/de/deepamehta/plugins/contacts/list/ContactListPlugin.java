@@ -1,5 +1,7 @@
 package de.deepamehta.plugins.contacts.list;
 
+import static de.deepamehta.plugins.contacts.list.ContactURIs.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +32,9 @@ public class ContactListPlugin extends WebActivatorPlugin {
         setupRenderContext();
     }
 
+    /**
+     * @return fist page
+     */
     @GET
     public Viewable list(@HeaderParam("Cookie") ClientState cookie) {
         return list(1, cookie);
@@ -38,7 +43,9 @@ public class ContactListPlugin extends WebActivatorPlugin {
     @GET
     @Path("{page}")
     public Viewable list(@PathParam("page") int page, @HeaderParam("Cookie") ClientState cookie) {
-
+        if (page < 1) {
+            page = 1; // sanitize page
+        }
         List<Contact> contacts = new ArrayList<Contact>();
         context.setVariable("pageNr", page);
         context.setVariable("contacts", contacts);
@@ -47,26 +54,24 @@ public class ContactListPlugin extends WebActivatorPlugin {
         Map<String, Long> contactIds = new TreeMap<String, Long>();
         long queryStart = System.currentTimeMillis();
 
-        ResultSet<RelatedTopic> persons = dms.getTopics("dm4.contacts.person", false, 0, cookie);
+        ResultSet<RelatedTopic> persons = dms.getTopics(PERSON, false, 0, cookie);
         context.setVariable("personCount", persons.getSize());
         for (RelatedTopic topic : persons) {
             contactIds.put(topic.getSimpleValue() + "_" + topic.getId(), topic.getId());
         }
 
-        ResultSet<RelatedTopic> institutions = dms.getTopics("dm4.contacts.institution", false, 0,
-                cookie);
+        ResultSet<RelatedTopic> institutions = dms.getTopics(INSTITUTION, false, 0, cookie);
         context.setVariable("institutionCount", institutions.getSize());
         for (RelatedTopic topic : institutions) {
             contactIds.put(topic.getSimpleValue() + "_" + topic.getId(), topic.getId());
         }
 
         context.setVariable("queryTime", System.currentTimeMillis() - queryStart);
-        context.setVariable("pageCount", contactIds.size() / PAGE);
+        context.setVariable("pageCount", contactIds.size() / PAGE + 1);
 
         List<Long> ids = new ArrayList<Long>(contactIds.values());
         long fetchStart = System.currentTimeMillis();
-        for (int i = PAGE * page - PAGE; i < PAGE * page; i++) {
-            // TODO get additional related topics
+        for (int i = PAGE * page - PAGE; i < Math.min(ids.size(), PAGE * page); i++) {
             Topic topic = dms.getTopic(ids.get(i), true, cookie);
             contacts.add(new Contact(i, topic.getModel()));
         }
