@@ -1,6 +1,7 @@
 package de.deepamehta.plugins.contacts.list;
 
 import static de.deepamehta.plugins.contacts.list.ContactURIs.*;
+import static de.deepamehta.plugins.contacts.list.PoemSpaceURIs.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +52,42 @@ public class Contact extends TopicBean {
             }
         }
         return phones;
+    }
+
+    public List<String> getProjects() {
+        return getCompositeValueList(PROJECT);
+    }
+
+    public List<String> getYears() {
+        return getCompositeValueList(YEAR);
+    }
+
+    public List<String> getAffiliations() {
+        return getCompositeValueList(AFFILIATION);
+    }
+
+    public List<String> getAreas() {
+        return getCompositeValueList(AREA);
+    }
+
+    public List<String> getKunstgattungen() {
+        return getCompositeValueList(GATTUNG);
+    }
+
+    public List<String> getArts() {
+        return getCompositeValueList(ART);
+    }
+
+    public List<String> getMedia() {
+        return getCompositeValueList(MEDIA);
+    }
+
+    public List<String> getBezirke() {
+        return getCompositeValueList(BEZIRK);
+    }
+
+    public List<String> getKieze() {
+        return getCompositeValueList(KIEZ);
     }
 
     private List<String> getCompositeValueList(String uri) {

@@ -41,11 +41,16 @@ td { vertical-align: top; }
         <th>E-Mails</th>
         <th>Phones</th>
         <th>Addresses</th>
-        <!-- additional poemspace values
-        <th>Workspace</th>
-        <th>Bezirk</th>
+
+        <th>Projekt</th>
+        <th>Jahr</th>
+        <th>Affiliation</th>
+        <th>Arbeitsbereich</th>
+        <th>Kunstgattung</th>
         <th>Einrichtungsart</th>
-        -->
+        <th>Medium</th>
+        <th>Bezirk</th>
+        <th>Kiez</th>
       </tr>
     </thead>
     <tbody>
@@ -70,6 +75,51 @@ td { vertical-align: top; }
             <span th:text="${address.street}">street</span>
             <span th:text="${address.code}">code</span>
             <span th:text="${address.city}">city</span>
+          </div>
+        </td>
+        <td>
+          <div th:each="project: ${contact.projects}">
+            <span th:text="${project}">project</span>
+          </div>
+        </td>
+        <td>
+          <div th:each="year: ${contact.years}">
+            <span th:text="${year}">year</span>
+          </div>
+        </td>
+        <td>
+          <div th:each="affiliation: ${contact.affiliations}">
+            <span th:text="${affiliation}">affiliation</span>
+          </div>
+        </td>
+        <td>
+          <div th:each="area: ${contact.areas}">
+            <span th:text="${area}">area</span>
+          </div>
+        </td>
+        <td>
+          <div th:each="kunstgattung: ${contact.kunstgattungen}">
+            <span th:text="${kunstgattung}">kunstgattung</span>
+          </div>
+        </td>
+        <td>
+          <div th:each="art: ${contact.arts}">
+            <span th:text="${art}">art</span>
+          </div>
+        </td>
+        <td>
+          <div th:each="media: ${contact.media}">
+            <span th:text="${media}">media</span>
+          </div>
+        </td>
+        <td>
+          <div th:each="bezirk: ${contact.bezirke}">
+            <span th:text="${bezirk}">bezirk</span>
+          </div>
+        </td>
+        <td>
+          <div th:each="kiez: ${contact.kieze}">
+            <span th:text="${kiez}">kiez</span>
           </div>
         </td>
       </tr>
