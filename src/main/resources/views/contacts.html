@@ -45,10 +45,12 @@ td { vertical-align: top; }
         <th>Projekt</th>
         <th>Jahr</th>
         <th>Affiliation</th>
-        <th>Arbeitsbereich</th>
-        <th>Kunstgattung</th>
+        <th>Presse</th>
+        <th>Kulturelle Bildung</th>
+        <th>Öffentlichkeitsarbeit</th>
+
         <th>Einrichtungsart</th>
-        <th>Medium</th>
+        <th>Kunstgattung</th>
         <th>Bezirk</th>
         <th>Kiez</th>
       </tr>
@@ -77,6 +79,7 @@ td { vertical-align: top; }
             <span th:text="${address.city}">city</span>
           </div>
         </td>
+
         <td>
           <div th:each="project: ${contact.projects}">
             <span th:text="${project}">project</span>
@@ -93,23 +96,29 @@ td { vertical-align: top; }
           </div>
         </td>
         <td>
-          <div th:each="area: ${contact.areas}">
-            <span th:text="${area}">area</span>
+          <div th:each="press: ${contact.press}">
+            <span th:text="${press}">press</span>
           </div>
         </td>
         <td>
-          <div th:each="kunstgattung: ${contact.kunstgattungen}">
-            <span th:text="${kunstgattung}">kunstgattung</span>
+          <div th:each="education: ${contact.education}">
+            <span th:text="${education}">education</span>
           </div>
         </td>
+        <td>
+          <div th:each="pubRel: ${contact.publics}">
+            <span th:text="${pubRel}">pubRel</span>
+          </div>
+        </td>
+
         <td>
           <div th:each="art: ${contact.arts}">
             <span th:text="${art}">art</span>
           </div>
         </td>
         <td>
-          <div th:each="media: ${contact.media}">
-            <span th:text="${media}">media</span>
+          <div th:each="kunstgattung: ${contact.kunstgattungen}">
+            <span th:text="${kunstgattung}">kunstgattung</span>
           </div>
         </td>
         <td>

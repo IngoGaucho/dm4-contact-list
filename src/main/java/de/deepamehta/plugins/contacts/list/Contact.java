@@ -66,20 +66,24 @@ public class Contact extends TopicBean {
         return getCompositeValueList(AFFILIATION);
     }
 
-    public List<String> getAreas() {
-        return getCompositeValueList(AREA);
+    public List<String> getPress() {
+        return getCompositeValueList(PRESS);
     }
 
-    public List<String> getKunstgattungen() {
-        return getCompositeValueList(GATTUNG);
+    public List<String> getEducation() {
+        return getCompositeValueList(EDUCATION);
+    }
+
+    public List<String> getPublics() {
+        return getCompositeValueList(PUBLIC);
     }
 
     public List<String> getArts() {
         return getCompositeValueList(ART);
     }
 
-    public List<String> getMedia() {
-        return getCompositeValueList(MEDIA);
+    public List<String> getKunstgattungen() {
+        return getCompositeValueList(GATTUNG);
     }
 
     public List<String> getBezirke() {

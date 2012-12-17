@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.logging.Logger;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
@@ -25,11 +26,15 @@ import de.deepamehta.plugins.webactivator.WebActivatorPlugin;
 @Produces("text/html")
 public class ContactListPlugin extends WebActivatorPlugin {
 
+    private static Logger log = Logger.getLogger(ContactListPlugin.class.getName());
+
     private static int PAGE = 5;
 
     @Override
     public void init() {
+        log.info("INIT CALL");
         setupRenderContext();
+        log.info("CONTEXT setup COMPLETE: " + context);
     }
 
     /**
@@ -37,16 +42,19 @@ public class ContactListPlugin extends WebActivatorPlugin {
      */
     @GET
     public Viewable list(@HeaderParam("Cookie") ClientState cookie) {
+        log.info("open contact list");
         return list(1, cookie);
     }
 
     @GET
     @Path("{page}")
     public Viewable list(@PathParam("page") int page, @HeaderParam("Cookie") ClientState cookie) {
+        log.info("view contact page " + page);
         if (page < 1) {
             page = 1; // sanitize page
         }
         List<Contact> contacts = new ArrayList<Contact>();
+        log.info("CONTEXT " + context);
         context.setVariable("pageNr", page);
         context.setVariable("contacts", contacts);
 
